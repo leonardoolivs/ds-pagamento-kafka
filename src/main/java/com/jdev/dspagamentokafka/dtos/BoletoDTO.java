@@ -30,12 +30,4 @@ public class BoletoDTO {
                 entity.getDataAtualizacao()
         );
     }
-
-    public Boleto toEntity() {
-        Boleto boleto = new Boleto();
-
-        boleto.setCodigoBarras(this.codigoBarras);
-
-        return boleto;
-    }
 }

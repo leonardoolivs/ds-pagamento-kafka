@@ -1,6 +1,7 @@
 package com.jdev.dspagamentokafka.services;
 
 import com.jdev.dspagamentokafka.dtos.BoletoDTO;
+import com.jdev.dspagamentokafka.dtos.request.BoletoRequestDTO;
 import com.jdev.dspagamentokafka.entity.Boleto;
 import com.jdev.dspagamentokafka.repositories.BoletoRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ public class BoletoService {
     private final BoletoRepository repository;
 
     @Transactional
-    public BoletoDTO salvar(BoletoDTO dto){
+    public BoletoDTO salvar(BoletoRequestDTO dto){
         if(repository.existsByCodigoBarras(dto.getCodigoBarras())){
             throw new RuntimeException("Código de Barras já usado");
         }

@@ -1,6 +1,7 @@
 package com.jdev.dspagamentokafka.controllers;
 
 import com.jdev.dspagamentokafka.dtos.BoletoDTO;
+import com.jdev.dspagamentokafka.dtos.request.BoletoRequestDTO;
 import com.jdev.dspagamentokafka.entity.Boleto;
 import com.jdev.dspagamentokafka.services.BoletoService;
 import org.apache.coyote.Response;
@@ -22,11 +23,11 @@ public class BoletoController {
     private BoletoService service;
 
     @PostMapping
-    public ResponseEntity<BoletoDTO> salvar(@RequestBody BoletoDTO boleto){
-        boleto = service.salvar(boleto);
+    public ResponseEntity<BoletoDTO> salvar(@RequestBody BoletoRequestDTO request){
+        BoletoDTO response = service.salvar(request);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(boleto.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(response.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(boleto);
+        return ResponseEntity.created(uri).body(response);
     }
 }
