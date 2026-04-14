@@ -21,7 +21,7 @@ public class Boleto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "codigo_barras")
+    @Column(name = "codigo_barras", unique = true)
     private String codigoBarras;
 
     @Column(name = "situacao_boleto")

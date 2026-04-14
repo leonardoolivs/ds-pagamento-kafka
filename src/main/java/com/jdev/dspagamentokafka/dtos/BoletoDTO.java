@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Data
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoletoDTO {
@@ -22,7 +21,7 @@ public class BoletoDTO {
     private LocalDateTime dataCriacao;
     private LocalDateTime dataAtualizacao;
 
-    public static BoletoDTO toDTO(Boleto entity) {
+    public static BoletoDTO fromEntity(Boleto entity) {
         return new BoletoDTO(
                 entity.getId(),
                 entity.getCodigoBarras(),
@@ -30,5 +29,13 @@ public class BoletoDTO {
                 entity.getDataCriacao(),
                 entity.getDataAtualizacao()
         );
+    }
+
+    public Boleto toEntity() {
+        Boleto boleto = new Boleto();
+
+        boleto.setCodigoBarras(this.codigoBarras);
+
+        return boleto;
     }
 }
