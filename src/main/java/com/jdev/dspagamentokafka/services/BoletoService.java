@@ -21,7 +21,7 @@ public class BoletoService {
 
         Boleto boleto = dto.toEntity();
 
-        repository.save(boleto);
+        boleto = repository.save(boleto);
 
         return BoletoDTO.fromEntity(boleto);
     }
