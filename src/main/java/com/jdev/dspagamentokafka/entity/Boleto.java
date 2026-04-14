@@ -5,13 +5,16 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "TB_BOLETO")
 public class Boleto {
 
     @Id
@@ -21,6 +24,7 @@ public class Boleto {
     @Column(name = "codigo_barras")
     private String codigoBarras;
 
+    @Column(name = "situacao_boleto")
     private Situacao situacao;
 
     @Column(name = "data_criacao")
@@ -28,4 +32,11 @@ public class Boleto {
 
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
+
+    @PrePersist
+    public void persist(){
+        situacao = Situacao.INICIALIZADO;
+        dataCriacao = LocalDateTime.now();
+        dataAtualizacao = LocalDateTime.now();
+    }
 }
